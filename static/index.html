@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Дисконтная система</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<div class="phone-container">
+    <div class="app-screen">
+        <!-- Экран входа -->
+        <div id="loginScreen" class="screen">
+            <div class="logo-area">
+                <i class="fa-solid fa-cash-register"></i>"></i>
+                <h1>Сибавтоматика+</h1>
+                <p>Вход в систему</p>
+            </div>
+            <div class="card">
+                <input type="text" id="loginName" class="input-field" placeholder="Имя пользователя">
+                <input type="password" id="loginPassword" class="input-field" placeholder="Пароль">
+                <button id="loginBtn" class="btn"><i class="fas fa-sign-in-alt"></i> Войти</button>
+                <button id="showRegisterBtn" class="btn btn-outline"><i class="fas fa-user-plus"></i> Нет аккаунта? Регистрация</button>
+            </div>
+        </div>
+
+        <!-- Экран регистрации -->
+        <div id="registerScreen" class="screen hidden">
+            <div class="logo-area">
+                <i class="fas fa-user-check"></i>
+                <h1>Регистрация</h1>
+                <p>Создайте новый аккаунт</p>
+            </div>
+            <div class="card">
+                <input type="text" id="regName" class="input-field" placeholder="Имя пользователя">
+                <input type="password" id="regPassword" class="input-field" placeholder="Пароль">
+                <div class="role-selector" id="regRoleSelector">
+                    <div data-role="individual" class="role-option selected">👤 Физическое лицо</div>
+                    <div data-role="installer" class="role-option">🔧 Монтажник</div>
+                </div>
+                <button id="registerBtn" class="btn"><i class="fas fa-user-check"></i> Зарегистрироваться</button>
+                <button id="backToLoginBtn" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Назад к входу</button>
+            </div>
+        </div>
+
+        <!-- Основной дашборд (без изменений) -->
+        <div id="dashboardScreen" class="screen hidden">
+            <div class="user-header">
+                <div class="user-info">
+                    <span class="user-name" id="dashboardUserName">Имя</span>
+                    <span class="user-role" id="dashboardUserRole">Физическое лицо</span>
+                </div>
+                <button id="logoutBtn" class="logout-icon"><i class="fas fa-sign-out-alt"></i></button>
+            </div>
+            <div id="roleSpecificContent"></div>
+            <div class="card">
+                <h3><i class="fas fa-qrcode"></i> QR для скидки / кэшбэка</h3>
+                <p id="qrDescriptionText" class="qr-desc">Нажмите кнопку, чтобы сгенерировать QR</p>
+                <button id="generateQRBtn" class="btn"><i class="fas fa-qrcode"></i> Сгенерировать QR</button>
+                <div id="qrArea" class="qr-area hidden">
+                    <div id="qrcode-container"></div>
+                    <span>Предъявите код на кассе</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module" src="/static/js/app.js"></script>
+</body>
+</html>

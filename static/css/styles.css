@@ -1,0 +1,357 @@
+/* static/css/styles.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+}
+
+body {
+    background: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 16px;
+}
+
+.phone-container {
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto;
+    background: #242424;
+    border-radius: 36px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 193, 7, 0.1);
+    overflow: hidden;
+}
+
+.app-screen {
+    padding: 24px 20px 32px;
+}
+
+.screen {
+    transition: opacity 0.2s;
+}
+
+.hidden {
+    display: none;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+h1 {
+    font-size: 1.9rem;
+    color: #FFC107;
+    margin-bottom: 8px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #e0e0e0;
+    margin-bottom: 16px;
+}
+
+h3 {
+    font-size: 1.2rem;
+    color: #FFC107;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+p, label, .info-text {
+    color: #cfcfcf;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.card {
+    background: #2d2d2d;
+    border-radius: 24px;
+    padding: 18px;
+    margin-bottom: 20px;
+    border: 1px solid #3a3a3a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.badge {
+    background: #FFC10720;
+    color: #FFC107;
+    padding: 6px 14px;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-block;
+    backdrop-filter: blur(4px);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #FFC107;
+    color: #1e1e1e;
+    font-weight: 600;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 60px;
+    font-size: 1rem;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1.5px solid #FFC107;
+    color: #FFC107;
+    box-shadow: none;
+}
+
+.btn-outline:hover, .btn-outline:active {
+    background: #FFC10720;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    width: auto;
+}
+
+.btn:active {
+    transform: scale(0.97);
+    background: #e0a800;
+}
+
+.option-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.option-btn {
+    background: #3a3a3a;
+    color: #e0e0e0;
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 40px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: 1px solid #4a4a4a;
+}
+
+.option-btn.active {
+    background: #FFC107;
+    color: #1e1e1e;
+    border-color: #FFC107;
+    font-weight: bold;
+}
+
+.progress-container {
+    background: #3a3a3a;
+    border-radius: 20px;
+    height: 24px;
+    width: 100%;
+    overflow: hidden;
+    margin: 12px 0;
+    position: relative;
+}
+
+.progress-fill {
+    background: #FFC107;
+    width: 0%;
+    height: 100%;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    color: #1e1e1e;
+    font-weight: bold;
+    font-size: 0.7rem;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    margin-top: 4px;
+    color: #aaa;
+}
+
+.sum-input-group, .bonus-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+.sum-input-group input, .bonus-input-group input {
+    flex: 2;
+    background: #1e1e1e;
+    border: 1px solid #3e3e3e;
+    padding: 12px;
+    border-radius: 48px;
+    color: white;
+    font-size: 1rem;
+}
+
+.flex-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.qr-area {
+    background: #f5f5f5;
+    border-radius: 24px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+#qrcode-container {
+    background: white;
+    padding: 12px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.divider {
+    height: 1px;
+    background: #3a3a3a;
+    margin: 16px 0;
+}
+
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #2a2a2a;
+    padding: 12px 16px;
+    border-radius: 60px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: bold;
+    color: #FFC107;
+}
+
+.user-role {
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.logout-icon {
+    background: none;
+    border: none;
+    color: #FFC107;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.input-field {
+    background: #1e1e1e;
+    border: 1px solid #3e3e3e;
+    border-radius: 48px;
+    padding: 14px 20px;
+    width: 100%;
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    outline: none;
+}
+
+.input-field:focus {
+    border-color: #FFC107;
+}
+
+.role-selector {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.role-option {
+    flex: 1;
+    text-align: center;
+    background: #2d2d2d;
+    padding: 12px;
+    border-radius: 48px;
+    cursor: pointer;
+    border: 1px solid #4a4a4a;
+    transition: 0.2s;
+}
+
+.role-option.selected {
+    background: #FFC107;
+    color: #121212;
+    border-color: #FFC107;
+    font-weight: bold;
+}
+
+.link-btn {
+    background: none;
+    border: none;
+    color: #FFC107;
+    font-weight: 500;
+    margin-top: 8px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.bonus-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.bonus-amount {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FFC107;
+}
+
+.bonus-goal {
+    font-size: 0.9rem;
+    background: #1e1e1e;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.logo-area {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.logo-area i {
+    font-size: 48px;
+    color: #FFC107;
+}
+
+.qr-desc {
+    margin-bottom: 12px;
+}
