@@ -1,4 +1,6 @@
-// Функции для физических лиц: расчёт скидки, прогресс-бар, обновление UI
+// static/js/individual.js
+
+// Функция расчёта скидки в зависимости от суммы накоплений
 export function getIndividualDiscount(totalSpent) {
     if (totalSpent < 5000) return 3;
     if (totalSpent < 15000) return 5;
@@ -6,23 +8,33 @@ export function getIndividualDiscount(totalSpent) {
     return 10;
 }
 
+// Прогресс до следующего уровня (процент от 30000)
 function getProgressPercent(total) {
-    let percent = (total / 30000) * 100;
-    return Math.min(percent, 100);
+    return Math.min((total / 30000) * 100, 100);
 }
 
+// Рендер UI для физического лица
 export function renderIndividual(user, onUpdate) {
     const container = document.getElementById('roleSpecificContent');
     if (!container) return;
-    const total = user.totalSpent || 0;
+
+    const total = user.total_spent || 0;
     const discount = getIndividualDiscount(total);
     const progressPercent = getProgressPercent(total);
-    let nextLevelText = "";
-    if (total < 5000) nextLevelText = `До скидки 5% осталось: ${(5000 - total).toLocaleString()} ₽`;
-    else if (total < 15000) nextLevelText = `До скидки 7% осталось: ${(15000 - total).toLocaleString()} ₽`;
-    else if (total < 30000) nextLevelText = `До скидки 10% осталось: ${(30000 - total).toLocaleString()} ₽`;
-    else nextLevelText = "Максимальная скидка 10% достигнута!";
 
+    // Формируем текст подсказки
+    let nextLevelText = "";
+    if (total < 5000) {
+        nextLevelText = `До скидки 5% осталось: ${(5000 - total).toLocaleString()} ₽`;
+    } else if (total < 15000) {
+        nextLevelText = `До скидки 7% осталось: ${(15000 - total).toLocaleString()} ₽`;
+    } else if (total < 30000) {
+        nextLevelText = `До скидки 10% осталось: ${(30000 - total).toLocaleString()} ₽`;
+    } else {
+        nextLevelText = "Максимальная скидка 10% достигнута!";
+    }
+
+    // Отрисовываем HTML
     container.innerHTML = `
         <div class="card">
             <h3><i class="fas fa-chart-line"></i> Накопительная скидка</h3>
@@ -48,21 +60,21 @@ export function renderIndividual(user, onUpdate) {
         </div>
     `;
 
-    // Привязка событий
+    // Функция добавления суммы и обновления
+    const addAmount = (amount) => {
+        const newTotal = (user.total_spent || 0) + amount;
+        user.total_spent = newTotal;
+        onUpdate(user);  // Вызываем колбэк, который отправит данные на сервер и вызовет перерисовку
+    };
+
+    // Обработчики кнопок
     document.getElementById('addAmountBtn')?.addEventListener('click', () => {
         const input = document.getElementById('addAmountInput');
         let val = parseInt(input.value);
-        if (!isNaN(val) && val > 0) {
-            user.totalSpent = (user.totalSpent || 0) + val;
-            onUpdate(user);
-        }
+        if (isNaN(val) || val <= 0) val = 0;
+        if (val > 0) addAmount(val);
     });
-    document.getElementById('addQuick1000')?.addEventListener('click', () => {
-        user.totalSpent = (user.totalSpent || 0) + 1000;
-        onUpdate(user);
-    });
-    document.getElementById('addQuick5000')?.addEventListener('click', () => {
-        user.totalSpent = (user.totalSpent || 0) + 5000;
-        onUpdate(user);
-    });
+
+    document.getElementById('addQuick1000')?.addEventListener('click', () => addAmount(1000));
+    document.getElementById('addQuick5000')?.addEventListener('click', () => addAmount(5000));
 }
