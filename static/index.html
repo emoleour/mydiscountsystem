@@ -40,11 +40,12 @@
                     <div data-role="installer" class="role-option">🔧 Монтажник</div>
                 </div>
                 <button id="registerBtn" class="btn"><i class="fas fa-user-check"></i> Зарегистрироваться</button>
+
                 <button id="backToLoginBtn" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Назад к входу</button>
             </div>
         </div>
 
-        <!-- Основной дашборд (без изменений) -->
+        <!-- Основной дашборд -->
         <div id="dashboardScreen" class="screen hidden">
             <div class="user-header">
                 <div class="user-info">
@@ -55,7 +56,7 @@
             </div>
             <div id="roleSpecificContent"></div>
             <div class="card">
-                <h3><i class="fas fa-qrcode"></i> QR для скидки / кэшбэка</h3>
+                <h3><i class="fas fa-qrcode"></i> QR для скидки</h3>
                 <p id="qrDescriptionText" class="qr-desc">Нажмите кнопку, чтобы сгенерировать QR</p>
                 <button id="generateQRBtn" class="btn"><i class="fas fa-qrcode"></i> Сгенерировать QR</button>
                 <div id="qrArea" class="qr-area hidden">
@@ -66,6 +67,7 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 <script type="module" src="/static/js/app.js"></script>
 </body>
 </html>

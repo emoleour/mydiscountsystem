@@ -64,7 +64,7 @@ function updateQRDescription() {
         let type = currentUser.discount_type || 'discount10';
         if (type === 'discount10') descEl.innerHTML = `🔧 Скидка 10% для монтажника`;
         else if (type === 'discount5_cashback5') descEl.innerHTML = `⚡ Скидка 5% + Кэшбэк 5%`;
-        else descEl.innerHTML = `💰 Только кэшбэк 5%`;
+        else descEl.innerHTML = `💰 Только кэшбэк 10%`;
     }
 }
 
@@ -77,7 +77,7 @@ function getMainQRText() {
         const type = currentUser.discount_type || 'discount10';
         if (type === 'discount10') return `Скидка 10% для монтажника ${currentUser.username}`;
         if (type === 'discount5_cashback5') return `Скидка 5% + Кэшбэк 5% | Монтажник ${currentUser.username}`;
-        return `Кэшбэк 5% (без скидки) | Монтажник ${currentUser.username}`;
+        return `Кэшбэк 10% (без скидки) | Монтажник ${currentUser.username}`;
     }
 }
 

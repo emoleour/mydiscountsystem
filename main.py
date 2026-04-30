@@ -35,3 +35,5 @@ async def root():
     if not os.path.exists(index_path):
         return {"error": f"index.html not found at {index_path}"}
     return FileResponse(index_path)
+
+
