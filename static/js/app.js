@@ -44,7 +44,7 @@ async function updateUI() {
         renderInstaller(currentUser, async (updatedUser) => {
             await updateUserOnServer({
                 bonus_points: updatedUser.bonus_points,
-                discount_type: updatedUser.installerDiscountType
+                discount_type: updatedUser.discount_type   // ✅ исправлено
             });
             currentUser = updatedUser;
             updateUI();
@@ -88,10 +88,30 @@ function onGenerateMainQR() {
     else alert("Ошибка генерации QR");
 }
 
+// Обработка списания бонусов (вызывается из installer.js)
+window.onBonusSpend = async (spendAmount) => {
+    console.log('onBonusSpend вызвана, сумма:', spendAmount);
+    if (!currentUser || currentUser.role !== 'installer') {
+        alert("Только для монтажников");
+        return;
+    }
+    const currentBonus = currentUser.bonus_points || 0;
+    if (spendAmount > currentBonus) {
+        alert(`Недостаточно бонусов. Доступно: ${currentBonus} баллов.`);
+        return;
+    }
+    const remaining = currentBonus - spendAmount;
+    const qrText = `Списание бонусов: ${spendAmount} баллов. Остаток: ${remaining} баллов. Монтажник: ${currentUser.username}`;
+    generateQrCode(qrText);
+    currentUser.bonus_points = remaining;
+    await updateUserOnServer({ bonus_points: remaining });
+    await updateUI();
+    alert(`Списано ${spendAmount} баллов. Новый баланс: ${remaining} баллов.`);
+};
+
 // Обработчик после успешного входа
 async function onLoginSuccess(userData) {
     currentUser = userData;
-    // Дополнительно загрузим свежие данные с сервера (на случай, если они уже изменились)
     const fresh = await fetchCurrentUser();
     if (fresh) currentUser = fresh;
     document.getElementById('loginScreen').classList.add('hidden');
@@ -106,11 +126,9 @@ document.getElementById('logoutBtn').addEventListener('click', () => {
     document.getElementById('dashboardScreen').classList.add('hidden');
     document.getElementById('loginScreen').classList.remove('hidden');
     clearQR();
-    // Очищаем поля входа
     document.getElementById('loginName').value = '';
     document.getElementById('loginPassword').value = '';
 });
 
-// Инициализация модуля авторизации
 initAuth(onLoginSuccess);
 document.getElementById('generateQRBtn').addEventListener('click', onGenerateMainQR);
