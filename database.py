@@ -2,11 +2,11 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 from sqlalchemy.orm import DeclarativeBase, MappedAsDataclass
 from typing import Annotated
 from fastapi import Depends
+from config.config import settings
 
 
-DATABASE_URL = "sqlite+aiosqlite:///./discont.db"
 
-engine = create_async_engine(DATABASE_URL)
+engine = create_async_engine(settings.DATABASE_URL)
 
 new_session = async_sessionmaker(engine, expire_on_commit=False)
 
